@@ -8,13 +8,15 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
-class SignInViewController: UIViewController {
-
+class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
     @IBAction func backToSignIn(segue: UIStoryboardSegue) {
         print("backToSignIn")
     }
     
+    @IBOutlet var facebookButton: FBSDKLoginButton!
     
     @IBOutlet var usernameTextField: UITextField!
     
@@ -22,20 +24,18 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        facebookButton.delegate = self
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
-                // User is signed in.
-                print("Sign In User: \(user.email)")
-                self.performSegue(withIdentifier: "showDetail", sender: nil)
-            } else {
-                // No user is signed in.
-                print("No user is signed in.")
-            }
+        if let user = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+            print("Sign In User: \(user.email)")
+            self.performSegue(withIdentifier: "showDetail", sender: nil)
+        } else {
+            // No user is signed in.
+            print("No user is signed in.")
         }
-  
     }
-
+    
     @IBAction func signIn(_ sender: Any) {
         FIRAuth.auth()?.signIn(withEmail: usernameTextField.text! , password: passwordTextField.text!) { (user, error) in
             // ...
@@ -43,8 +43,8 @@ class SignInViewController: UIViewController {
             if error != nil {
                 print("My Error ####\(error?.localizedDescription)")
             }else{
-                
-                if (user?.isEmailVerified)! == false {
+                print(user?.isEmailVerified ?? "")
+                if !(user?.isEmailVerified)! {
                     print("Sorry your email has not yet been verified.")
                 }else{
                     // User is signed in.
@@ -54,7 +54,7 @@ class SignInViewController: UIViewController {
             }
         }
     }
- 
+    
     @IBAction func forgetPassword(_ sender: Any) {
         
         FIRAuth.auth()?.sendPasswordReset(withEmail: usernameTextField.text!) { error in
@@ -65,7 +65,20 @@ class SignInViewController: UIViewController {
                 // Password reset email sent.
             }
         }
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!){
+        if error != nil {
+            print("facebook login error : \(error.localizedDescription)")
+            return
+        }
         
+        print("-----> ",result)
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
+    {
+        print("Log Out")
     }
 }
 

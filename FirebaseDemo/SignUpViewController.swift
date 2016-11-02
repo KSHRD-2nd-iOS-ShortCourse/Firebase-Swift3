@@ -33,6 +33,8 @@ class SignUpViewController: UIViewController {
                 } else {
                     // No user is signed in.
                 }
+                
+                try! FIRAuth.auth()?.signOut()
             }
         }
         
@@ -58,6 +60,9 @@ class SignUpViewController: UIViewController {
                         print("Email sent to \(user?.email)")
                     }
                 }
+                
+                try! FIRAuth.auth()?.signOut()
+
             }
         }
         

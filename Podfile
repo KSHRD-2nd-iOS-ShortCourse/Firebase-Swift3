@@ -7,4 +7,7 @@ target 'FirebaseDemo' do
   # Pods for FirebaseDemo
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 end

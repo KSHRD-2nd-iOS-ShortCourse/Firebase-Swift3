@@ -66,10 +66,16 @@
                                     <action selector="forgetPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="67L-kJ-Yzh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7X-ye-ugU" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="80" y="330" width="143" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Facebook Login"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="facebookButton" destination="b7X-ye-ugU" id="O8k-UU-PsF"/>
                         <outlet property="passwordTextField" destination="Nrd-Vp-goe" id="Lol-cq-PUO"/>
                         <outlet property="usernameTextField" destination="PJd-t2-3j0" id="0pT-fG-2JK"/>
                         <segue destination="daL-O4-YRr" kind="show" identifier="showDetail" id="28m-l8-325"/>
