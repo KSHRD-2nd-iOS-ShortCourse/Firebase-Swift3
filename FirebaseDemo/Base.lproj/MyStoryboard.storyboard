@@ -134,7 +134,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uym-3b-z5d">
                                                     <rect key="frame" x="177" y="7" width="135" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Facebook"/>
+                                                    <state key="normal" title="Facebook Custom"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZp-f0-UC3" customClass="FBSDKLoginButton">
                                                     <rect key="frame" x="8" y="7" width="135" height="30"/>
@@ -482,11 +482,11 @@
         <!--Tab Bar Controller-->
         <scene sceneID="zuc-19-fxk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xrU-Rb-dGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="VqV-1P-8PI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="VjW-4n-5uk"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="esJ-AZ-IuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
@@ -496,6 +496,7 @@
                         <segue destination="Mwb-W6-Lpc" kind="relationship" relationship="viewControllers" id="mo5-8p-HMe"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xrU-Rb-dGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="746" y="859"/>
         </scene>

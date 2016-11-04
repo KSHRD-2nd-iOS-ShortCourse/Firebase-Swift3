@@ -82,11 +82,11 @@
 				6F0B19301DC8B3B400E44FD0 /* AppDelegate.swift */,
 				6F0B19321DC8B3B400E44FD0 /* SignInTableViewController.swift */,
 				6F0B19441DC8BA9800E44FD0 /* SignUpTableViewController.swift */,
+				6FB7C0A51DCB671E00040E41 /* ProfileTableViewController.swift */,
 				6F0B19371DC8B3B400E44FD0 /* Assets.xcassets */,
 				6F0B19391DC8B3B400E44FD0 /* LaunchScreen.storyboard */,
 				6F0B193C1DC8B3B400E44FD0 /* Info.plist */,
 				6F0B19421DC8B43A00E44FD0 /* GoogleService-Info.plist */,
-				6FB7C0A51DCB671E00040E41 /* ProfileTableViewController.swift */,
 			);
 			path = FirebaseDemo;
 			sourceTree = "<group>";

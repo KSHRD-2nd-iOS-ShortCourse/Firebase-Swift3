@@ -37,6 +37,7 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        loadingIndicator.stopAnimating()
         if let user = FIRAuth.auth()?.currentUser {
             // User is signed in.
             print("Sign In User: \(user.email)")
@@ -81,11 +82,18 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!){
         if error != nil {
             print("facebook login error : \(error.localizedDescription)")
+            loadingIndicator.stopAnimating()
+            return
+        }else if result.isCancelled{
+            print("Click done or cancel")
+            loadingIndicator.stopAnimating()
             return
         }
         
         print("-----> ",result)
+        loadingIndicator.startAnimating()
         getProfile()
+        firebaseLoginWithCredential()
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!)
@@ -95,6 +103,7 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
     
     
     func handleCustomFBLogin() {
+        
         let paramaters = ["email", "public_profile", "user_friends"]
         FBSDKLoginManager().logIn(withReadPermissions: paramaters, from: self, handler: {
             (result, error) in
@@ -102,7 +111,13 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
             if error != nil {
                 // Error occur
                 print("facebook login error", error?.localizedDescription ?? "")
+                self.loadingIndicator.stopAnimating()
+            }else if (result?.isCancelled)!{
+                print("Click done or cancel")
+                self.loadingIndicator.stopAnimating()
+                return
             }else{
+                self.loadingIndicator.startAnimating()
                 // No error sign in success
                 if (result?.grantedPermissions.contains("public_profile"))!{
                     if let token = FBSDKAccessToken.current(){
@@ -123,7 +138,8 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
             if error != nil {
                 print("Get profile error ", error?.localizedDescription ?? "")
             }else{
-                print(result ?? "")
+                let dict = result as! [String : AnyObject]
+                print(dict["email"] ?? "")
             }
         }
     }
@@ -141,6 +157,8 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
                     print(error?.localizedDescription ?? "")
                 }else{
                     print(user?.displayName ?? "")
+                    print(user?.email)
+                    self.performSegue(withIdentifier: "showProfile", sender: nil)
                 }
             })
         }
