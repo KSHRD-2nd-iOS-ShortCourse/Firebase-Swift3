@@ -27,7 +27,7 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add delegate for Facebook Button
-        //facebookButton.publishPermissions = ["email", "public_profile", "user_friends"]
+        facebookButton.readPermissions = ["email", "public_profile", "user_friends"]
         facebookButton.delegate = self
         
         // Custom Button Property
@@ -143,7 +143,6 @@ class SignInTableViewController: UITableViewController, FBSDKLoginButtonDelegate
                     print(user?.displayName ?? "")
                 }
             })
-            
         }
     }
 }
