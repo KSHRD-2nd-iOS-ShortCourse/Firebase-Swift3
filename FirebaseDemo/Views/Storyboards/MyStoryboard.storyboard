@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -472,8 +471,19 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="Tvx-Mo-MXz">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="xNo-UA-kTj"/>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="xNo-UA-kTj">
+                            <connections>
+                                <action selector="updateInfo:" destination="bc6-10-mDV" id="yah-9r-dbi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ageTextField" destination="H5Y-Sk-bX0" id="wsa-w4-QF5"/>
+                        <outlet property="emailTextField" destination="z38-1G-yBl" id="38e-nd-ycq"/>
+                        <outlet property="genderTextField" destination="byT-uF-evW" id="xzJ-nK-zv0"/>
+                        <outlet property="nameTextField" destination="sSo-Ox-3DG" id="4DL-Mk-bU8"/>
+                        <outlet property="websiteTextField" destination="Nz0-UJ-u2Y" id="x8i-1b-hpJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbp-Fj-Z5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -570,6 +580,10 @@
                                         <exclude reference="WA9-u2-hLI"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="nameLabel" destination="jf1-SA-KgP" id="6cR-hg-qrn"/>
+                                    <outlet property="profilePictureImageView" destination="eZ5-If-puX" id="e6X-M9-TG1"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
